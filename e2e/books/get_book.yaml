@@ -1,0 +1,15 @@
+desc: Get a book
+runners:
+  req:
+    endpoint: http://localhost:8080
+debug: true
+if: included
+steps:
+  getBook:
+    req:
+      /books/{{ vars.id }}:
+        get:
+          body: null
+    test: |
+      steps.getBook.res.status == 200
+      && compare(steps.getBook.res.body, vars.getBookRes)

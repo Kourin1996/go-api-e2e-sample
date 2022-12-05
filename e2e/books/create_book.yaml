@@ -1,0 +1,16 @@
+# テストの説明
+desc: Create a book
+runners:
+  req:
+    endpoint: http://localhost:8080 # APIのベースパス
+debug: true
+if: included
+steps:
+  createBook:
+    req:
+      /books: # APIのパス
+        post:
+          body:
+            application/json: "{{ vars.createBookReq }}" # リクエストボディ
+    test: |
+      steps.createBook.res.status == 201

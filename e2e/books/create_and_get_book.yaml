@@ -1,0 +1,21 @@
+desc: Create and get a book
+runners:
+  req:
+    endpoint: http://localhost:8080
+debug: true
+vars:
+  createBookReq: "json://create_book_req.json"
+  id: 1
+  getBookRes: "json://get_book_res.json"
+steps:
+  createBook:
+    include:
+      path: create_book.yaml
+      vars:
+        createBookReq: "{{ vars.createBookReq }}"
+  getBook:
+    include:
+      path: get_book.yaml
+      vars:
+        id: {{ vars.id }}
+        getBookRes: "{{ vars.getBookRes }}"
