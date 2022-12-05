@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: Create Book
+  description: Create a Book record
+  version: 1.0.0
+paths:
+  /books:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookReq'
+      responses:
+        '201':
+          description: Return a created book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+  /books/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Return a book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+
+
+components:
+  schemas:
+    CreateBookReq:
+      type: object
+      properties:
+        name:
+          type: string
+        author:
+          type: string
+      required:
+        - name
+        - author
+
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: uint64
+        name:
+          type: string
+        author:
+          type: string
+        created_at:
+          type: string
+          format: date-time

@@ -33,7 +33,11 @@ func TestE2E(t *testing.T) {
 		"e2e/**/*.yaml",
 		runn.T(t),
 		// ベースパスの指定
-		runn.Runner("req", "http://localhost:8080"),
+		runn.Runner(
+			"req",
+			"http://localhost:8080",
+			runn.OpenApi3("schemas/book.yaml"),
+		),
 		// テスト中で関数を実行できるよう、Funcを使って指定する
 		runn.Func("customcompare", CompareModelObject),
 		// テスト中にJWTを指定できるよう、Varを使って指定する
