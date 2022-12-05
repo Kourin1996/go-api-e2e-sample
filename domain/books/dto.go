@@ -8,5 +8,5 @@ type CreateBookDTO struct {
 
 // Bookを1件取得するためのリクエストのパラメータを保存するDTO
 type GetBookDTO struct {
-	ID uint `params:"id"`
+	ID uint `param:"id"`
 }

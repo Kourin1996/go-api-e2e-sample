@@ -12,4 +12,4 @@ steps:
           body: null
     test: |
       steps.getBook.res.status == 200
-      && compare(steps.getBook.res.body, vars.getBookRes)
+      && customcompare(steps.getBook.res.body, vars.getBookRes)
